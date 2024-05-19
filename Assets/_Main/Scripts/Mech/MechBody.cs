@@ -21,10 +21,10 @@ public class MechBody : MonoBehaviour
         var ray = Camera.main.ScreenPointToRay(e);
         if (Physics.Raycast(ray, out var raycastHit, rayMaxDistance, rayLayerMask))
         {
-            var myTransform = transform;
+            var targetDirection = raycastHit.point - mech.transform.position;
+            var targetRotation = Quaternion.LookRotation(targetDirection);
             
-            var lookAtDirection = raycastHit.point - myTransform.position;
-            transform.forward = Vector3.Slerp(myTransform.forward,  lookAtDirection, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation,  targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
 }

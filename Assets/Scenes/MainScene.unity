@@ -166,10 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e175cc0e8f72f246b710525bfd66937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
-  rotationSpeed: 1
-  minAngleToMove: 45
   mech: {fileID: 2130369497}
+  movementSpeed: 1.25
+  rotationSpeed: 1
+  minAngleToMove: 90
 --- !u!1 &59314165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,8 +1503,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1ec3292a5521e448a8443760d25444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 1
   mech: {fileID: 2130369497}
+  rotationSpeed: 1
   rayMaxDistance: 100
   rayLayerMask:
     serializedVersion: 2

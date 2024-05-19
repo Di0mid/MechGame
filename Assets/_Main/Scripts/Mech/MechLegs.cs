@@ -21,10 +21,11 @@ public class MechLegs : MonoBehaviour
         
         if(movementDirection == Vector3.zero)
             return;
-
-        transform.forward = Vector3.Slerp(transform.forward, movementDirection, rotationSpeed * Time.deltaTime);
         
-        var canMove = Vector3.Angle(transform.forward, movementDirection) <= minAngleToMove;
+        var targetRotation = Quaternion.LookRotation(movementDirection);
+        transform.rotation = Quaternion.Slerp( transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        
+        var canMove = Quaternion.Angle( transform.rotation, targetRotation) <= minAngleToMove;
         
         if (canMove)
         {
