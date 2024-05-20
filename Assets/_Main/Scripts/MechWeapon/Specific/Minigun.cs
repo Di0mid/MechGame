@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Minigun : MechWeapon
+public class Minigun : MechWeaponBase
 {
     [SerializeField] private float requiredMuzzleRevolutions;
     [SerializeField] private float muzzleRevolutionsIncreaseSpeed;
@@ -16,7 +16,7 @@ public class Minigun : MechWeapon
         if(_currentMuzzleRevolutions < requiredMuzzleRevolutions)
             return;
         
-        if (!(lastShootTime <= Time.time + data.timeBetweenShoot)) 
+        if (!(Time.time > lastShootTime)) 
             return;
         
         var needAmmo = muzzleOutList.Count * data.shotsPerMuzzle;
@@ -33,7 +33,7 @@ public class Minigun : MechWeapon
                 
                 if (Physics.Raycast(ray, out var raycastHit, data.distance, data.targetLayerMask))
                 {
-                    Debug.DrawLine(transform.position, raycastHit.point, Color.red);
+                    Debug.DrawLine(muzzle.position, raycastHit.point, Color.red);
                         
                     if (raycastHit.collider.TryGetComponent<IDamageable>(out var target))
                     {
@@ -42,7 +42,7 @@ public class Minigun : MechWeapon
                 }
                 else
                 {
-                    Debug.DrawLine(transform.position, ray.GetPoint(data.distance), Color.red);
+                    Debug.DrawLine(muzzle.position, ray.GetPoint(data.distance), Color.red);
                 }
                 
             }
@@ -53,8 +53,7 @@ public class Minigun : MechWeapon
         if (currentSpread > data.maxSpread)
             currentSpread = data.maxSpread;
         
-        lastShootTime = Time.time;
+        lastShootTime = Time.time + data.timeBetweenShoot;
         currentAmmo -= needAmmo;
-        
     }
 }

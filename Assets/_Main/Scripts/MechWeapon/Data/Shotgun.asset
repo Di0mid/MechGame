@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   ammo: 50
-  shotsPerOnce: 5
+  shotsPerMuzzle: 5
   baseSpread: 0.1
   maxSpread: 0.1
   spreadIncreaseSpeed: 0
   timeBetweenShoot: 0.5
-  distance: 5
+  distance: 10
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 64

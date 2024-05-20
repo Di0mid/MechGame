@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MechWeapon : MonoBehaviour
+public abstract class MechWeaponBase : MonoBehaviour
 {
     [SerializeField] protected MechWeaponSO data;
 

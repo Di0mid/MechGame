@@ -7,7 +7,7 @@ public class MechHands : MonoBehaviour
     [SerializeField] private Mech mech;
     
     [Space]
-    [SerializeField] private List<MechWeapon> weapons;
+    [SerializeField] private List<MechWeaponBase> weapons;
 
     private void Start()
     {
@@ -18,7 +18,7 @@ public class MechHands : MonoBehaviour
     {
         if (e.IsPressed())
         {
-            if(weapons.Count == 0)
+            if (weapons == null || weapons.Count == 0)
                 return;
             
             weapons.ForEach(w => w.Shooting());
