@@ -6,7 +6,8 @@ public class Mech : MonoBehaviour
 {
     public event EventHandler<Vector2> OnMovementInput;
     public event EventHandler<Vector2> OnLookAtInput;
-    public event EventHandler<InputAction> OnFireInput;
+    public event EventHandler<InputAction> OnLeftHandInput;
+    public event EventHandler<InputAction> OnRightHandInput;
     
     private GameInput _input;
 
@@ -24,7 +25,8 @@ public class Mech : MonoBehaviour
     {
         HandleMovementInput();
         HandleLookAtInput();
-        HandleFireInput();
+        HandleLeftHandInput();
+        HandleRightHandInput();
     }
 
     private void HandleMovementInput()
@@ -34,11 +36,17 @@ public class Mech : MonoBehaviour
 
     private void HandleLookAtInput()
     {
-        OnLookAtInput?.Invoke(this, _input.Player.LookAt.ReadValue<Vector2>());
+        OnLookAtInput?.Invoke(this, _input.Player.MousePosition.ReadValue<Vector2>());
     }
 
-    private void HandleFireInput()
+    private void HandleLeftHandInput()
     {
-        OnFireInput?.Invoke(this, _input.Player.Fire);
+        OnLeftHandInput?.Invoke(this, _input.Player.LeftHand);
+    }
+    
+    private void HandleRightHandInput()
+    {
+        OnRightHandInput?.Invoke(this, _input.Player.RightHand);
     }
 }
+

@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LookAt",
+                    "name": "MousePosition",
                     "type": "PassThrough",
                     "id": "4f6a7bee-3a90-40d3-b69b-6006a3377e9e",
                     "expectedControlType": "Vector2",
@@ -24,9 +24,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fire",
+                    "name": "LeftHand",
                     "type": "Button",
                     "id": "63e30fb0-6247-422b-bad4-59fca1965584",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightHand",
+                    "type": "Button",
+                    "id": "dca25a60-c524-4b87-8c9d-360b3c7987c7",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -96,7 +105,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LookAt",
+                    "action": "MousePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -107,7 +116,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Fire",
+                    "action": "LeftHand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2194233-5751-40bc-b708-8facdfaeefc7",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightHand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

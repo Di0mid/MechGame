@@ -6,6 +6,7 @@ public class MechBody : MonoBehaviour
 
     [Space]
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private Transform rotatablePart;
     
     [Space]
     [SerializeField] private float rayMaxDistance;
@@ -21,10 +22,10 @@ public class MechBody : MonoBehaviour
         var ray = Camera.main.ScreenPointToRay(e);
         if (Physics.Raycast(ray, out var raycastHit, rayMaxDistance, rayLayerMask))
         {
-            var targetDirection = raycastHit.point - mech.transform.position;
+            var targetDirection = raycastHit.point - rotatablePart.position;
             var targetRotation = Quaternion.LookRotation(targetDirection);
             
-            transform.rotation = Quaternion.Slerp(transform.rotation,  targetRotation, rotationSpeed * Time.deltaTime);
+            rotatablePart.rotation = Quaternion.Slerp(rotatablePart.rotation,  targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
 }

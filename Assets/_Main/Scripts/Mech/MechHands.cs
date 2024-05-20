@@ -11,10 +11,10 @@ public class MechHands : MonoBehaviour
 
     private void Start()
     {
-        mech.OnFireInput += MechOnFireInput;
+        mech.OnRightHandInput += MechOnRightHandInput;
     }
 
-    private void MechOnFireInput(object sender, InputAction e)
+    private void MechOnRightHandInput(object sender, InputAction e)
     {
         if (e.IsPressed())
         {
