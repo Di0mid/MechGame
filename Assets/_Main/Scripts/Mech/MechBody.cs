@@ -3,7 +3,7 @@ using UnityEngine;
 public class MechBody : MonoBehaviour
 {
     [SerializeField] private Mech mech;
-    
+
     [Space]
     [SerializeField] private float rotationSpeed;
     

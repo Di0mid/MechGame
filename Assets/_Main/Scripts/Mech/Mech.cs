@@ -1,10 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Mech : MonoBehaviour
 {
     public event EventHandler<Vector2> OnMovementInput;
     public event EventHandler<Vector2> OnLookAtInput;
+    public event EventHandler<InputAction> OnFireInput;
     
     private GameInput _input;
 
@@ -22,6 +24,7 @@ public class Mech : MonoBehaviour
     {
         HandleMovementInput();
         HandleLookAtInput();
+        HandleFireInput();
     }
 
     private void HandleMovementInput()
@@ -32,5 +35,10 @@ public class Mech : MonoBehaviour
     private void HandleLookAtInput()
     {
         OnLookAtInput?.Invoke(this, _input.Player.LookAt.ReadValue<Vector2>());
+    }
+
+    private void HandleFireInput()
+    {
+        OnFireInput?.Invoke(this, _input.Player.Fire);
     }
 }
