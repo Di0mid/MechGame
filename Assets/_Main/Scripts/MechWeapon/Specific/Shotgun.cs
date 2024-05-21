@@ -19,7 +19,7 @@ public class Shotgun : MechWeaponBase
                 var shootDirection = muzzle.forward + Random.insideUnitSphere * currentSpread;
                 var ray = new Ray(muzzle.position, shootDirection);
                 
-                if (Physics.Raycast(ray, out var raycastHit, data.distance, data.targetLayerMask))
+                if (Physics.Raycast(ray, out var raycastHit, data.distance, targetLayerMask))
                 {
                     Debug.DrawLine(muzzle.position, raycastHit.point, Color.red);
                         

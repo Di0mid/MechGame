@@ -548,6 +548,9 @@ MonoBehaviour:
   muzzleOutList:
   - {fileID: 8600581254419344063}
   - {fileID: 795226935204462645}
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   requiredMuzzleRevolutions: 5
   muzzleRevolutionsIncreaseSpeed: 1
 --- !u!1 &8657397773960631454

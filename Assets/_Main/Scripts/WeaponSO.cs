@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "newMechWeaponDara", menuName = "Mech/Data/Weapon")]
-public class MechWeaponSO : ScriptableObject
+[CreateAssetMenu(fileName = "newWeaponData", menuName = "Data/Weapon")]
+public class WeaponSO : ScriptableObject
 {
     [Min(1)]
     public int damage;
@@ -29,7 +29,4 @@ public class MechWeaponSO : ScriptableObject
     [Space] 
     [Min(1)]
     public int distance;
-    
-    [Space] 
-    public LayerMask targetLayerMask;
 }

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public abstract class MechWeaponBase : MonoBehaviour
 {
-    [SerializeField] protected MechWeaponSO data;
+    [SerializeField] protected WeaponSO data;
 
     [Space] 
     [SerializeField] protected List<Transform> muzzleOutList;
+    
+    [Space]
+    [SerializeField] protected LayerMask targetLayerMask;
 
     protected int currentAmmo;
     protected float currentSpread;

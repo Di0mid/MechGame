@@ -393,6 +393,9 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 1a1aa9f782237d54e897af87b3ae24c2, type: 2}
   muzzleOutList:
   - {fileID: 5832182969033039576}
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3289814137551278768
 GameObject:
   m_ObjectHideFlags: 0
