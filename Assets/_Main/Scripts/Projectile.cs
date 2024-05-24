@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private float checkRadius;
+    [SerializeField] private float checkDistance;
+    
     private float _speed;
     private int _damage;
     private Vector3 _movementDirection;
@@ -30,10 +33,9 @@ public class Projectile : MonoBehaviour
 
     private void HandleMovement()
     {
-        var traveledDistance = _speed * Time.fixedDeltaTime;
-        transform.position += traveledDistance * _movementDirection;
+        transform.position += _movementDirection * (_speed * Time.fixedDeltaTime);
 
-        if (Physics.SphereCast(transform.position, 0.05f, _movementDirection, out var raycastHit, traveledDistance))
+        if (Physics.SphereCast(transform.position, checkRadius, _movementDirection, out var raycastHit, checkDistance))
         {
             if (raycastHit.collider.TryGetComponent<IDamageable>(out var damageable))
             {
@@ -42,5 +44,11 @@ public class Projectile : MonoBehaviour
             
             Destroy(gameObject);
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position + transform.forward * checkDistance, checkRadius);
     }
 }
