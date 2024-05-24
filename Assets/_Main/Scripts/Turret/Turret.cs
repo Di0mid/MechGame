@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(SphereCollider))]
 public class Turret : MonoBehaviour
@@ -8,11 +9,16 @@ public class Turret : MonoBehaviour
     [SerializeField] private TurretSO data;
     
     [Space]
+    [SerializeField] private WeaponBase weapon;
+
+    [Space]
+    [Range(0, 360)]
+    [SerializeField] private float xClampAngel;
     [SerializeField] private Transform xRotatablePart;
     [SerializeField] private Transform yRotatablePart;
 
     private enum State { Idle, ChoseClosestTarget, Shooting }
-    [SerializeField] private State state;
+    private State _state;
 
     private readonly List<TestTarget> _targetsInRange = new();
     private TestTarget _currentTarget;
@@ -28,27 +34,35 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
-        state = State.Idle;
+        _state = State.Idle;
     }
 
     private void Update()
     {
-        switch (state)
+        HandleStates();
+    }
+
+    private void HandleStates()
+    {
+        switch (_state)
         {
             case State.Idle:
+                
                 if (_targetsInRange.Count > 0)
-                    state = State.ChoseClosestTarget;
+                    _state = State.ChoseClosestTarget;
                 break;
+            
             case State.ChoseClosestTarget:
+                
                 ChoseClosestTarget();
                 if(_currentTarget != null)
-                    state = State.Shooting;
+                    _state = State.Shooting;
                 break;
+            
             case State.Shooting:
+                
                 Shooting();
                 break;
-            default:
-                throw new ArgumentOutOfRangeException();
         }
     }
     
@@ -72,28 +86,32 @@ public class Turret : MonoBehaviour
     private void Shooting()
     {
         if (_currentTarget == null)
-            state = State.Idle;
+            _state = State.Idle;
 
         HandleRotation();
         
-        
+        weapon?.Shooting();
     }
 
     private void HandleRotation()
     {
         var currentTargetPosition = _currentTarget.transform.position;
         
-        var direction = _currentTarget.transform.position - yRotatablePart.position;
-        var rotation = Quaternion.LookRotation(direction);
+        var direction = currentTargetPosition - yRotatablePart.position;
+        var rotation = Quaternion.LookRotation(direction.normalized);
+        
         rotation.x = 0;
         rotation.z = 0;
-        yRotatablePart.localRotation = rotation;
+        yRotatablePart.localRotation =
+            Quaternion.Slerp(yRotatablePart.localRotation, rotation, data.rotationSpeed * Time.deltaTime);
 
-        direction = _currentTarget.transform.position - xRotatablePart.position;
-        rotation = Quaternion.LookRotation(direction);
+        direction = currentTargetPosition - xRotatablePart.position;
+        rotation = Quaternion.LookRotation(direction.normalized);
+        
         rotation.y = 0;
         rotation.z = 0;
-        xRotatablePart.localRotation = rotation;
+        xRotatablePart.localRotation =
+            Quaternion.Slerp(xRotatablePart.localRotation, rotation, data.rotationSpeed * Time.deltaTime);
     }
     
     private void OnTriggerEnter(Collider other)
@@ -119,7 +137,7 @@ public class Turret : MonoBehaviour
             if (_currentTarget.Equals(target))
             {
                 _currentTarget = null;
-                state = State.Idle;
+                _state = State.Idle;
             }
         }
     }

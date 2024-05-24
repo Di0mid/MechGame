@@ -7,7 +7,7 @@ public class MechHands : MonoBehaviour
     [SerializeField] private Mech mech;
     
     [Space]
-    [SerializeField] private List<MechWeaponBase> weapons;
+    [SerializeField] private List<WeaponBase> weapons;
 
     private void Start()
     {

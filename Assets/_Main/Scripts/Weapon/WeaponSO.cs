@@ -29,4 +29,16 @@ public class WeaponSO : ScriptableObject
     [Space] 
     [Min(1)]
     public int distance;
+
+    [Space]
+    public FireMode fireMode;
+    public enum FireMode
+    {
+        Projectile,
+        Raycast
+    }
+
+    [Space] 
+    public float projectileSpeed;
+    public Projectile projectile;
 }

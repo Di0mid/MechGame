@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: Minigun
   m_EditorClassIdentifier: 
   damage: 1
+  fireMode: 1
   ammo: 2000
+  projectile: {fileID: 0}
   shotsPerMuzzle: 1
   baseSpread: 0.05
   maxSpread: 0.1
   spreadIncreaseSpeed: 0.005
   timeBetweenShoot: 0.03
   distance: 100
-  targetLayerMask:
-    serializedVersion: 2
-    m_Bits: 64

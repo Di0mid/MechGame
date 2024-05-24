@@ -20,3 +20,5 @@ MonoBehaviour:
   spreadIncreaseSpeed: 0
   timeBetweenShoot: 0.5
   distance: 20
+  fireMode: 1
+  projectile: {fileID: 0}

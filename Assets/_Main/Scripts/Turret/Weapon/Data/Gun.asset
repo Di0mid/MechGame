@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4591cc7a7fe1c849ba81e4e5c8afb5d, type: 3}
+  m_Name: Gun
+  m_EditorClassIdentifier: 
+  damage: 3
+  ammo: 50
+  shotsPerMuzzle: 1
+  baseSpread: 0.027
+  maxSpread: 0.079
+  spreadIncreaseSpeed: 0.04
+  timeBetweenShoot: 0.25
+  distance: 100
+  fireMode: 0
+  projectileSpeed: 2
+  projectile: {fileID: 2384372985184631578, guid: 4c1af454e4ab95b4a8119f024798c5f7, type: 3}

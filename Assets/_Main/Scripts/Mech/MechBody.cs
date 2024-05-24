@@ -23,7 +23,7 @@ public class MechBody : MonoBehaviour
         if (Physics.Raycast(ray, out var raycastHit, rayMaxDistance, rayLayerMask))
         {
             var targetDirection = raycastHit.point - rotatablePart.position;
-            var targetRotation = Quaternion.LookRotation(targetDirection);
+            var targetRotation = Quaternion.LookRotation(targetDirection.normalized);
             
             rotatablePart.rotation = Quaternion.Slerp(rotatablePart.rotation,  targetRotation, rotationSpeed * Time.deltaTime);
         }
