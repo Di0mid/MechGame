@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "newWeaponData", menuName = "Data/Weapon")]
 public class WeaponSO : ScriptableObject
@@ -28,7 +30,7 @@ public class WeaponSO : ScriptableObject
 
     [Space] 
     [Min(1)]
-    public int distance;
+    public int rayDistance;
 
     [Space]
     public FireMode fireMode;
@@ -39,6 +41,13 @@ public class WeaponSO : ScriptableObject
     }
 
     [Space] 
+    [Min(1)]
     public float projectileSpeed;
     public Projectile projectile;
+
+    private void OnValidate()
+    {
+        if (baseSpread > maxSpread)
+            maxSpread = baseSpread;
+    }
 }

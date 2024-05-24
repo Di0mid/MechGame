@@ -65,7 +65,7 @@ public abstract class WeaponBase : MonoBehaviour
     {
         var ray = new Ray(muzzle.position, shootDirection);
                 
-        if (Physics.Raycast(ray, out var raycastHit, data.distance, targetLayerMask))
+        if (Physics.Raycast(ray, out var raycastHit, data.rayDistance, targetLayerMask))
         {
             Debug.DrawLine(muzzle.position, raycastHit.point, Color.red);
                         
@@ -76,7 +76,7 @@ public abstract class WeaponBase : MonoBehaviour
         }
         else
         {
-            Debug.DrawLine(muzzle.position, ray.GetPoint(data.distance), Color.red);
+            Debug.DrawLine(muzzle.position, ray.GetPoint(data.rayDistance), Color.red);
         }
     }
 
@@ -84,10 +84,5 @@ public abstract class WeaponBase : MonoBehaviour
     {
         var projectile = Instantiate(data.projectile, muzzle.position, Quaternion.identity);
         projectile.Launch(data.projectileSpeed, data.damage, shootDirection);
-    }
-    
-    public int GetMuzzleCount()
-    {
-        return muzzleOutList.Count;
     }
 }

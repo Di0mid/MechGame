@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Gun
   m_EditorClassIdentifier: 
   damage: 3
-  ammo: 50
+  ammo: 1000
   shotsPerMuzzle: 1
-  baseSpread: 0.027
-  maxSpread: 0.079
+  baseSpread: 0.022
+  maxSpread: 0.086
   spreadIncreaseSpeed: 0.04
-  timeBetweenShoot: 0.25
-  distance: 100
+  timeBetweenShoot: 0.2
+  rayDistance: 0
   fireMode: 0
-  projectileSpeed: 2
+  projectileSpeed: 10
   projectile: {fileID: 2384372985184631578, guid: 4c1af454e4ab95b4a8119f024798c5f7, type: 3}

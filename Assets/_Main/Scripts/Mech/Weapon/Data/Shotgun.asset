@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   ammo: 100
-  shotsPerMuzzle: 5
-  baseSpread: 0.1
-  maxSpread: 0.1
+  shotsPerMuzzle: 10
+  baseSpread: 0.2
+  maxSpread: 0.2
   spreadIncreaseSpeed: 0
   timeBetweenShoot: 0.5
-  distance: 20
-  fireMode: 1
-  projectile: {fileID: 0}
+  rayDistance: 0
+  fireMode: 0
+  projectileSpeed: 100
+  projectile: {fileID: 2384372985184631578, guid: 4c1af454e4ab95b4a8119f024798c5f7, type: 3}
