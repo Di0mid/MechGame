@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewRadius: 3
   rotationSpeed: 5
+  xRotationClampAngle: 45
+  yMinAngleToShoot: 10
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 64

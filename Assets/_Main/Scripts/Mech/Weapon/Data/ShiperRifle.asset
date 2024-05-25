@@ -18,8 +18,8 @@ MonoBehaviour:
   baseSpread: 0
   maxSpread: 0
   spreadIncreaseSpeed: 0
-  timeBetweenShoot: 1
+  timeBetweenShoot: 0.5
   rayDistance: 0
   fireMode: 0
-  projectileSpeed: 150
+  projectileSpeed: 100
   projectile: {fileID: 2384372985184631578, guid: 4c1af454e4ab95b4a8119f024798c5f7, type: 3}

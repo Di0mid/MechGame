@@ -4,8 +4,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float checkRadius;
-    [SerializeField] private float checkDistance;
-    
+
     private float _speed;
     private int _damage;
     private Vector3 _movementDirection;
@@ -33,9 +32,11 @@ public class Projectile : MonoBehaviour
 
     private void HandleMovement()
     {
+        var previousPosition = transform.position;
         transform.position += _movementDirection * (_speed * Time.fixedDeltaTime);
-
-        if (Physics.SphereCast(transform.position, checkRadius, _movementDirection, out var raycastHit, checkDistance))
+        var passedDistance = Vector3.Distance(previousPosition, transform.position);
+        
+        if (Physics.SphereCast(previousPosition, checkRadius, _movementDirection, out var raycastHit, passedDistance))
         {
             if (raycastHit.collider.TryGetComponent<IDamageable>(out var damageable))
             {
@@ -49,6 +50,6 @@ public class Projectile : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + transform.forward * checkDistance, checkRadius);
+        Gizmos.DrawWireSphere(transform.position, checkRadius);
     }
 }

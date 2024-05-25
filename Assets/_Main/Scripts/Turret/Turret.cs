@@ -12,8 +12,6 @@ public class Turret : MonoBehaviour
     [SerializeField] private WeaponBase weapon;
 
     [Space]
-    [Range(0, 360)]
-    [SerializeField] private float xClampAngel;
     [SerializeField] private Transform xRotatablePart;
     [SerializeField] private Transform yRotatablePart;
 
@@ -24,7 +22,7 @@ public class Turret : MonoBehaviour
     private TestTarget _currentTarget;
 
     private SphereCollider _sphereCollider;
-
+    
     private void Awake()
     {
         _sphereCollider = GetComponent<SphereCollider>();
@@ -61,6 +59,8 @@ public class Turret : MonoBehaviour
             
             case State.Shooting:
                 
+                if (_currentTarget == null)
+                    _state = State.Idle;
                 Shooting();
                 break;
         }
@@ -85,28 +85,29 @@ public class Turret : MonoBehaviour
 
     private void Shooting()
     {
-        if (_currentTarget == null)
-            _state = State.Idle;
-
         HandleRotation();
-        
-        weapon?.Shooting();
+
+        var directionToTarget = _currentTarget.transform.position - yRotatablePart.position;
+        if (Vector3.Angle(yRotatablePart.forward, directionToTarget.normalized) <= data.yMinAngleToShoot)
+        {
+            weapon?.Shooting();
+        }
     }
 
     private void HandleRotation()
     {
         var currentTargetPosition = _currentTarget.transform.position;
         
-        var direction = currentTargetPosition - yRotatablePart.position;
-        var rotation = Quaternion.LookRotation(direction.normalized);
+        var directionToTarget = currentTargetPosition - yRotatablePart.position;
+        var rotation = Quaternion.LookRotation(directionToTarget.normalized);
         
         rotation.x = 0;
         rotation.z = 0;
         yRotatablePart.localRotation =
             Quaternion.Slerp(yRotatablePart.localRotation, rotation, data.rotationSpeed * Time.deltaTime);
 
-        direction = currentTargetPosition - xRotatablePart.position;
-        rotation = Quaternion.LookRotation(direction.normalized);
+        directionToTarget = currentTargetPosition - xRotatablePart.position;
+        rotation = Quaternion.LookRotation(directionToTarget.normalized);
         
         rotation.y = 0;
         rotation.z = 0;

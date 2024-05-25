@@ -1482,7 +1482,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 55fb702a389796a4d9cd65fc95f92028, type: 2}
   weapon: {fileID: 6632504571806604065}
-  xClampAngel: 10
   xRotatablePart: {fileID: 7438730792102760441}
   yRotatablePart: {fileID: 5421902737339099521}
 --- !u!135 &2980341128252329153

@@ -20,7 +20,7 @@ public class MechBody : MonoBehaviour
     private void MechOnLookAtInput(object sender, Vector2 e)
     {
         var ray = Camera.main.ScreenPointToRay(e);
-        if (Physics.Raycast(ray, out var raycastHit, rayMaxDistance, rayLayerMask))
+        if (Physics.Raycast(ray, out var raycastHit, rayMaxDistance, rayLayerMask, QueryTriggerInteraction.Ignore))
         {
             var targetDirection = raycastHit.point - rotatablePart.position;
             var targetRotation = Quaternion.LookRotation(targetDirection.normalized);
